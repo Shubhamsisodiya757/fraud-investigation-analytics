@@ -8,8 +8,8 @@ Flag a customer-beneficiary relationship when:
 
 - transactions occur after beneficiary creation;
 - transactions occur within 30 minutes of beneficiary creation;
-- at least 3 transactions are connected by rapid gaps; and
-- the connecting transaction gaps are 3 minutes or less.
+- at least 3 transactions form a qualifying sequence; and
+- consecutive transaction gaps in that sequence are 3 minutes or less.
 
 The result is an investigation alert, not a fraud conclusion.
 
@@ -23,7 +23,7 @@ The result is an investigation alert, not a fraud conclusion.
 | TC04 | C004 | B004 | Alert / False-positive candidate | 4 rapid transactions; pattern is high velocity but may be legitimate business activity |
 | TC05 | C005 | B005 | Alert | 3 identical-value transactions with 3-minute gaps |
 | TC06 | C006 | B006 | Alert | 3 rapid transactions crossing midnight within the 30-minute window |
-| TC07 | C007 | B007 | Alert | First transaction occurs exactly 30 minutes after beneficiary creation; boundary should be included |
+| TC07 | C007 | B007 | No alert | The 09:30 transaction sits exactly on the 30-minute boundary and is included, but the 09:33 and 09:36 transactions are outside the 30-minute window, so no 3-transaction sequence exists |
 | TC08 | C008 | B008 | No alert | Transaction before beneficiary creation is excluded; remaining transactions have gaps greater than 3 minutes |
 | TC09 | C009 | B009 | Alert | 3 rapid transactions to B009 |
 | TC10 | C009 | B010 | No alert | Same customer but only 2 transactions to B010; tests customer-beneficiary partitioning |
@@ -38,7 +38,6 @@ The rule should produce investigation alerts for:
 - C004 → B004
 - C005 → B005
 - C006 → B006
-- C007 → B007
 - C009 → B009
 
 ## False-positive lesson
