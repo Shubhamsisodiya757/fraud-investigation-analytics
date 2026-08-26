@@ -17,8 +17,8 @@ Flag a customer-beneficiary relationship for further investigation when:
 1. A new beneficiary is added.
 2. Transactions are sent to that beneficiary after creation.
 3. Transactions occur within the first 30 minutes after beneficiary creation.
-4. At least 3 transactions occur in that window.
-5. At least 2 consecutive transaction gaps are 3 minutes or less.
+4. At least 3 transactions occur in the qualifying sequence.
+5. Consecutive transaction gaps in the sequence are 3 minutes or less.
 
 This rule is a detection signal, not proof of fraud.
 
@@ -49,7 +49,7 @@ This prevents SQL from becoming an exercise in syntax without an investigative o
 - `COUNT(*) OVER` for transaction counts without collapsing transaction rows
 - `LAG()` for transaction sequencing
 - Time-interval analysis
-- Running `SUM()` for burst/sequence identification
+- Running `SUM()` for sequence grouping
 - `GROUP BY` for burst-level summaries
 - Rule-based risk scoring concepts
 
@@ -75,6 +75,18 @@ A high-risk alert prioritizes a case. It does not establish that fraud occurred.
 
 Two customer-beneficiary relationships can have the same transaction count but very different concentrations of activity. Sequence analysis helps distinguish these patterns.
 
+### 6. Rule design must avoid double-counting
+
+Signals such as repeated amounts, transaction velocity, and new-device activity should represent distinct risk dimensions. Correlated signals should not be stacked carelessly just because they appear in the same event.
+
+## Production SQL
+
+The finalized detection query is available at:
+
+`checkpoint-01/sql/04_beneficiary_velocity_alert.sql`
+
+The implementation groups transactions into consecutive sequences separated by non-rapid gaps, summarizes each sequence, and raises `velocity_alert = 1` when the sequence contains at least 3 transactions.
+
 ## Status
 
 - [x] Define fraud hypothesis
@@ -83,8 +95,9 @@ Two customer-beneficiary relationships can have the same transaction count but v
 - [x] Build 30-minute investigation window
 - [x] Build transaction sequencing with `LAG()`
 - [x] Build rapid-gap flag
-- [x] Build burst-start and burst-ID logic
-- [ ] Finalize production-ready velocity alert SQL
+- [x] Build consecutive sequence grouping
+- [x] Build burst-level summary
+- [x] Finalize production-ready velocity alert SQL
 - [ ] Add synthetic dataset
 - [ ] Add test scenarios and findings
 
