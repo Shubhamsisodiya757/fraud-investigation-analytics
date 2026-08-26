@@ -1,0 +1,7 @@
+customer_id,beneficiary_account,expected_velocity_alert,reason
+C001,B001,1,Three transactions with two rapid gaps within 30 minutes
+C003,B003,1,Three-transaction rapid burst followed by a later non-rapid transaction
+C004,B004,1,Four rapid transactions; retained as false-positive candidate for further investigation
+C005,B005,1,Three identical-value transactions with three-minute gaps
+C006,B006,1,Three rapid transactions crossing midnight within the 30-minute window
+C009,B009,1,Three rapid transactions to the same newly added beneficiary
