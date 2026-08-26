@@ -87,6 +87,14 @@ The finalized detection query is available at:
 
 The implementation groups transactions into consecutive sequences separated by non-rapid gaps, summarizes each sequence, and raises `velocity_alert = 1` when the sequence contains at least 3 transactions.
 
+## Test Coverage
+
+Synthetic test data and expected outcomes are documented in:
+
+`checkpoint-01/test-cases.md`
+
+The test suite covers true-positive candidates, legitimate-looking high-velocity activity, slow transactions within the monitoring window, exact 30-minute boundary behaviour, transactions before beneficiary creation, midnight crossover, and multiple beneficiaries for the same customer.
+
 ## Status
 
 - [x] Define fraud hypothesis
@@ -98,9 +106,11 @@ The implementation groups transactions into consecutive sequences separated by n
 - [x] Build consecutive sequence grouping
 - [x] Build burst-level summary
 - [x] Finalize production-ready velocity alert SQL
-- [ ] Add synthetic dataset
-- [ ] Add test scenarios and findings
+- [x] Add synthetic dataset
+- [x] Add test scenarios and expected outcomes
+- [ ] Execute SQL against the dataset and document observed results
+- [ ] Add device/account-takeover signals
 
 ## Data Notice
 
-This portfolio project will use synthetic financial data. No real customer, account, or transaction data is included.
+This portfolio project uses synthetic financial data. No real customer, account, or transaction data is included.
