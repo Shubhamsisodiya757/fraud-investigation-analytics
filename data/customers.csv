@@ -1,0 +1,11 @@
+customer_id,name,city,occupation,account_open_date
+C001,Aarav Mehta,Mumbai,Consultant,2022-05-10
+C002,Neha Kapoor,Delhi,Designer,2021-11-03
+C003,Rohan Sharma,Jaipur,Engineer,2020-07-18
+C004,Simran Patel,Pune,Business Owner,2019-02-14
+C005,Vikram Rao,Bengaluru,Sales Manager,2023-01-22
+C006,Ananya Singh,Hyderabad,Doctor,2020-09-05
+C007,Karan Malhotra,Chandigarh,Trader,2024-03-11
+C008,Priya Nair,Kochi,Teacher,2022-12-01
+C009,Aditya Verma,Ahmedabad,Accountant,2021-06-21
+C010,Ishita Shah,Surat,Architect,2023-08-19
