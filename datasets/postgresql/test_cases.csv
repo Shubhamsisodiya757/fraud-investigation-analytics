@@ -1,0 +1,12 @@
+case_id,customer_id,beneficiary_account,expected_outcome,reason
+TC01,C0001,B0001_FRAUD,ALERT,3+ transactions with rapid gaps <=3 minutes
+TC02,C0002,B0002_SLOW,NO_ALERT,Gaps are 19 and 9 minutes
+TC03,C0003,B0003_BURST,ALERT,3-transaction rapid burst followed by later non-rapid transaction
+TC04,C0004,B0004_FP,ALERT,High-velocity pattern; may be legitimate business activity
+TC05,C0005,B0005_IDENT,ALERT,3 identical-value transactions with 3-minute gaps
+TC06,C0006,B0006_MIDNIGHT,ALERT,3 rapid transactions crossing midnight
+TC07,C0007,B0007_BOUNDARY,NO_ALERT,Only first transaction is exactly at 30-minute boundary; no qualifying rapid sequence
+TC08,C0008,B0008_BEFORE,NO_ALERT,Pre-add transaction excluded; post-add gaps are not rapid
+TC09,C0009,B0009_RAPID,ALERT,3 rapid transactions to B0009_RAPID
+TC10,C0009,B0010_OTHER,NO_ALERT,Only 2 transactions; tests customer-beneficiary partitioning
+TC11,C0010,B0010_ONLY2,NO_ALERT,3 transactions but gaps are 15 and 9 minutes
