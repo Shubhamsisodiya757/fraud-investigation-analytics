@@ -1,0 +1,12 @@
+customer_id,beneficiary_account,added_on,verified,bank_name
+C001,B001,2026-08-20 02:00:00,true,Bank_A
+C002,B002,2026-08-20 10:00:00,true,Bank_B
+C003,B003,2026-08-20 02:00:00,false,Bank_C
+C004,B004,2026-08-20 14:00:00,true,Bank_D
+C005,B005,2026-08-20 22:00:00,false,Bank_E
+C006,B006,2026-08-20 23:50:00,false,Bank_F
+C007,B007,2026-08-20 09:00:00,true,Bank_A
+C008,B008,2026-08-20 09:00:00,true,Bank_B
+C009,B009,2026-08-20 11:00:00,false,Bank_C
+C009,B010,2026-08-20 11:30:00,false,Bank_D
+C010,B011,2026-08-20 16:00:00,true,Bank_E
